@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Patients â€” Engramic{% endblock %}{% block content %}
+<header class="page-heading"><div><div class="eyebrow">CLINICAL WORKSPACE</div><h1>Patients</h1><p>Find a record and open its connected clinical context.</p></div><a class="button" href="/doctor/notes/new">+ Add clinical note</a></header>
+<form class="search" method="get"><label class="sr-only" for="q">Search patients</label><input id="q" name="q" value="{{ query }}" placeholder="Search by patient name or ID"><button>Search</button></form>
+<section class="panel table-panel"><div class="table-head"><span>Patient</span><span>Age</span><span>Gender</span><span>Record ID</span><span></span></div>{% for p in patients %}<a class="table-row" href="/doctor/patients/{{ p.id }}"><span class="name-cell"><i class="avatar">{{ p.name[0] }}</i><b>{{ p.name }}</b></span><span>{{ p.age or 'â€”' }}</span><span>{{ p.gender|title if p.gender else 'â€”' }}</span><span class="mono">{{ p.id }}</span><span>View â†’</span></a>{% else %}<div class="empty"><h3>No matching patients</h3><p>Try a different name or record ID.</p></div>{% endfor %}</section>
+{% endblock %}
